@@ -7,7 +7,7 @@ function Counter() {
 
   useEffect(() => {
     setCalculation(() => count * 2);
-  }, []); // <- add the count variable here
+  }, [count]); // <- add the count variable here
 
   return (
     <>
