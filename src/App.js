@@ -1,22 +1,21 @@
-import { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
+import React, { useState } from "react";
 
-function Counter() {
-  const [count, setCount] = useState(1);
-  const [calculation, setCalculation] = useState(0);
-
-  useEffect(() => {
-    setCalculation(() => count * 2);
-  }, [count]); // <- add the count variable here
-
+function App(props) {
+  const [count, setRandomCount] = useState(function generateRandomInteger() {
+    return Math.random() * 100;
+  });
+  function clickHandler(e) {
+    setRandomCount(Math.floor(Math.random() * 100));
+  }
   return (
-    <>
-      <p>Count: {count}</p>
-      <button onClick={() => setCount((c) => c + 1)}>+</button>
-      <p>Calculation: {calculation}</p>
-    </>
+    <div style={{ margin: "auto", width: 100, display: "block" }}>
+      <h1> {count} </h1>
+
+      <p>
+        <button onClick={clickHandler}> Click </button>
+      </p>
+    </div>
   );
 }
-export default Counter;
 
-ReactDOM.render(<Counter />, document.getElementById("root"));
+export default App;
